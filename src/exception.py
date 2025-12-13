@@ -1,4 +1,5 @@
 import sys
+import logging
 
 # Extract error details from traceback
 def error_message_details(error, error_detail: sys):
@@ -12,8 +13,16 @@ def error_message_details(error, error_detail: sys):
 # Custom exception with detailed error tracking
 class CustomException(Exception):
     def __init__(self, error_message, error_detail: sys):
-        super.__init__(error_message)
+        super().__init__(error_message)
         self.error_message = error_message_details(error_message, error_detail=error_detail)
     
     def __str__(self):
         return self.error_message
+
+# Testing
+if __name__ == "__main__":
+    try:
+        a = 1/0
+    except Exception as ex:
+        logging.info("Divide by Zero")
+        raise CustomException(ex, sys)
