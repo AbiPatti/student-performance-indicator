@@ -46,17 +46,17 @@ class DataTransformation:
             # Create pipeline for numerical features (impute + scale)
             numerical_pipeline = Pipeline(
                 steps=[
-                    ("imputer", SimpleImputer(strategy="median"))
+                    ("imputer", SimpleImputer(strategy="median")),
                     ("scaler", StandardScaler())
                 ]
             )
             
-            # Create pipeline for categorical features (impute + encode + scale)
+            # Create pipeline for categorical features (impute + encode)
             categorical_pipeline = Pipeline(
                 steps=[
-                    ("imputer", SimpleImputer(strategy="most_frequent"))
-                    ("one_hot_encoder", OneHotEncoder())
-                    ("scaler", StandardScaler())
+                    ("imputer", SimpleImputer(strategy="most_frequent")),
+                    ("one_hot_encoder", OneHotEncoder()),
+                    ("scaler", StandardScaler(with_mean=False))
                 ]
             )
 
@@ -66,7 +66,7 @@ class DataTransformation:
             # Combine pipelines into single preprocessor
             preprocessor = ColumnTransformer(
                 transformers=[
-                    ("numerical_pipeline", numerical_pipeline, numerical_columns)
+                    ("numerical_pipeline", numerical_pipeline, numerical_columns),
                     ("categorical_pipeline", categorical_pipeline, categorical_columns)
                 ]
             )
