@@ -22,7 +22,7 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
 
-    def initiate_model_trainer(self, train_array, test_array, preprocessor_path):
+    def initiate_model_trainer(self, train_array, test_array, preprocessor_path=None):
         """
         Trains multiple models and selects the best one based on R² score.
         
