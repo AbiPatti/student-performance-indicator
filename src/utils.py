@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import pandas as pd
 import dill
+from sklearn.model_selection import GridSearchCV
 from src.exception import CustomException
 from sklearn.metrics import r2_score
 
@@ -28,9 +29,9 @@ def save_object(file_path, obj):
     except Exception as ex:
         raise CustomException(ex, sys)
     
-def evaluate_model(X_train, y_train, X_test, y_test, models):
+def evaluate_model(X_train, y_train, X_test, y_test, models, model_params):
     """
-    Trains and evaluates multiple models, returning their R² scores.
+    Trains and evaluates multiple models with hyperparameter tuning, returning their R² scores.
     
     Args:
         X_train: Training features
@@ -38,6 +39,7 @@ def evaluate_model(X_train, y_train, X_test, y_test, models):
         X_test: Test features
         y_test: Test target
         models: Dictionary of model names and instances
+        model_params: Dictionary of hyperparameter grids for each model
         
     Returns:
         dict: Model names mapped to their test R² scores
@@ -51,10 +53,16 @@ def evaluate_model(X_train, y_train, X_test, y_test, models):
         # Loop through each model
         for i in range(len(list(models))):
             model = list(models.values())[i]
-            
-            # Train model on training data
+            params = model_params[list(models.keys())[i]]
+
+            # Perform grid search for hyperparameter tuning
+            grid_search = GridSearchCV(model, params, cv=3, n_jobs=-1)
+            grid_search.fit(X_train, y_train)
+
+            # Update model with best hyperparameters and retrain
+            model.set_params(**grid_search.best_params_)
             model.fit(X_train, y_train)
-            
+
             # Make predictions on train and test sets
             y_train_pred = model.predict(X_train)
             y_test_pred = model.predict(X_test)
