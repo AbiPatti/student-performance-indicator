@@ -65,7 +65,7 @@ class ModelTrainer:
             best_model_score = max(sorted(model_report.values()))
 
             # Get best model's name from model report
-            best_model_name = list(model_report.keys())[list(model_report.values).index(best_model_score)]
+            best_model_name = list(model_report.keys())[list(model_report.values()).index(best_model_score)]
 
             # Get best model
             best_model = models[best_model_name]
@@ -84,9 +84,9 @@ class ModelTrainer:
 
             # Calculate final R² score on test set
             predicted = best_model.predict(X_test)
-            r2_score = r2_score(y_test, predicted)
+            r2_square = r2_score(y_test, predicted)
 
-            return r2_score
+            return r2_square
 
         except Exception as ex:
             raise CustomException(ex, sys)
