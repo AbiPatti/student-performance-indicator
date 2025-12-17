@@ -29,6 +29,25 @@ def save_object(file_path, obj):
     except Exception as ex:
         raise CustomException(ex, sys)
     
+def load_object(file_path):
+    """
+    Loads a serialized Python object from file using dill.
+    
+    Args:
+        file_path: Path to the saved object file
+        
+    Returns:
+        Deserialized Python object
+        
+    Raises:
+        CustomException: If loading fails
+    """
+    try:
+        with open(file_path, 'rb') as file_obj:
+            return dill.load(file_obj)
+    except Exception as ex:
+        raise CustomException(ex, sys)
+    
 def evaluate_model(X_train, y_train, X_test, y_test, models, model_params):
     """
     Trains and evaluates multiple models with hyperparameter tuning, returning their R² scores.
