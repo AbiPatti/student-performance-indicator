@@ -27,8 +27,8 @@ class PredictPipeline:
         """
         try:
             # Define paths to saved model and preprocessor artifacts
-            model_path = 'artifact\model.pkl'
-            preprocessor_path = 'artifact\preprocessor.pkl'
+            model_path = 'artifact/model.pkl'
+            preprocessor_path = 'artifact/preprocessor.pkl'
 
             # Load trained model and preprocessor from disk
             model = load_object(model_path)
