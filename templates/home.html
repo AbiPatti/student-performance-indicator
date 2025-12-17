@@ -119,7 +119,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎓 Student Performance Predictor</h1>
+        <h1>Student Performance Predictor</h1>
         <p class="subtitle">Predict math scores based on student demographics and test scores</p>
         
         <form action="/predictdata" method="post">
@@ -127,8 +127,8 @@
                 <label for="gender">Gender</label>
                 <select id="gender" name="gender" required>
                     <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="male" {% if gender == 'male' %}selected{% endif %}>Male</option>
+                    <option value="female" {% if gender == 'female' %}selected{% endif %}>Female</option>
                 </select>
             </div>
             
@@ -136,11 +136,11 @@
                 <label for="race_ethnicity">Race/Ethnicity</label>
                 <select id="race_ethnicity" name="race_ethnicity" required>
                     <option value="">Select Group</option>
-                    <option value="group A">Group A</option>
-                    <option value="group B">Group B</option>
-                    <option value="group C">Group C</option>
-                    <option value="group D">Group D</option>
-                    <option value="group E">Group E</option>
+                    <option value="group A" {% if race_ethnicity == 'group A' %}selected{% endif %}>Group A</option>
+                    <option value="group B" {% if race_ethnicity == 'group B' %}selected{% endif %}>Group B</option>
+                    <option value="group C" {% if race_ethnicity == 'group C' %}selected{% endif %}>Group C</option>
+                    <option value="group D" {% if race_ethnicity == 'group D' %}selected{% endif %}>Group D</option>
+                    <option value="group E" {% if race_ethnicity == 'group E' %}selected{% endif %}>Group E</option>
                 </select>
             </div>
             
@@ -148,12 +148,12 @@
                 <label for="parental_level_of_education">Parental Level of Education</label>
                 <select id="parental_level_of_education" name="parental_level_of_education" required>
                     <option value="">Select Education Level</option>
-                    <option value="some high school">Some High School</option>
-                    <option value="high school">High School</option>
-                    <option value="some college">Some College</option>
-                    <option value="associate's degree">Associate's Degree</option>
-                    <option value="bachelor's degree">Bachelor's Degree</option>
-                    <option value="master's degree">Master's Degree</option>
+                    <option value="some high school" {% if parental_level_of_education == 'some high school' %}selected{% endif %}>Some High School</option>
+                    <option value="high school" {% if parental_level_of_education == 'high school' %}selected{% endif %}>High School</option>
+                    <option value="some college" {% if parental_level_of_education == 'some college' %}selected{% endif %}>Some College</option>
+                    <option value="associate's degree" {% if parental_level_of_education == "associate's degree" %}selected{% endif %}>Associate's Degree</option>
+                    <option value="bachelor's degree" {% if parental_level_of_education == "bachelor's degree" %}selected{% endif %}>Bachelor's Degree</option>
+                    <option value="master's degree" {% if parental_level_of_education == "master's degree" %}selected{% endif %}>Master's Degree</option>
                 </select>
             </div>
             
@@ -161,8 +161,8 @@
                 <label for="lunch">Lunch Type</label>
                 <select id="lunch" name="lunch" required>
                     <option value="">Select Lunch Type</option>
-                    <option value="standard">Standard</option>
-                    <option value="free/reduced">Free/Reduced</option>
+                    <option value="standard" {% if lunch == 'standard' %}selected{% endif %}>Standard</option>
+                    <option value="free/reduced" {% if lunch == 'free/reduced' %}selected{% endif %}>Free/Reduced</option>
                 </select>
             </div>
             
@@ -170,19 +170,19 @@
                 <label for="test_preparation_course">Test Preparation Course</label>
                 <select id="test_preparation_course" name="test_preparation_course" required>
                     <option value="">Select Status</option>
-                    <option value="none">None</option>
-                    <option value="completed">Completed</option>
+                    <option value="none" {% if test_preparation_course == 'none' %}selected{% endif %}>None</option>
+                    <option value="completed" {% if test_preparation_course == 'completed' %}selected{% endif %}>Completed</option>
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="reading_score">Reading Score (0-100)</label>
-                <input type="number" id="reading_score" name="reading_score" min="0" max="100" required placeholder="Enter reading score">
+                <input type="number" id="reading_score" name="reading_score" min="0" max="100" required placeholder="Enter reading score" value="{{ reading_score if reading_score else '' }}">
             </div>
             
             <div class="form-group">
                 <label for="writing_score">Writing Score (0-100)</label>
-                <input type="number" id="writing_score" name="writing_score" min="0" max="100" required placeholder="Enter writing score">
+                <input type="number" id="writing_score" name="writing_score" min="0" max="100" required placeholder="Enter writing score" value="{{ writing_score if writing_score else '' }}">
             </div>
             
             <button type="submit" class="btn-predict">Predict Math Score</button>

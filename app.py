@@ -37,8 +37,16 @@ def predict_datapoint():
         predict_pipeline = PredictPipeline()
         results = predict_pipeline.predict(df_pred)
 
-        # Render template with predicted score (extract first element from array)
-        return render_template('home.html', results=results[0])
+        # Round prediction to 2 decimal places and pass back form data to persist inputs
+        return render_template('home.html', 
+                             results=round(results[0], 2),
+                             gender=data.gender,
+                             race_ethnicity=data.race_ethnicity,
+                             parental_level_of_education=data.parental_level_of_education,
+                             lunch=data.lunch,
+                             test_preparation_course=data.test_preparation_course,
+                             reading_score=data.reading_score,
+                             writing_score=data.writing_score)
     
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
