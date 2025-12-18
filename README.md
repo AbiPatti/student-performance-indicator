@@ -148,8 +148,8 @@ The model is a means to an end. The pipeline is the point.
 
 ---
 
-**<img width="892" height="350" alt="image" src="https://github.com/user-attachments/assets/93cd01e9-626b-4f92-aa41-9ad83e6c2298" />
- AWS Elastic Beanstalk environment dashboard showing "Health: Ok" status in green
+<img width="892" height="350" alt="image" src="https://github.com/user-attachments/assets/93cd01e9-626b-4f92-aa41-9ad83e6c2298" />
+AWS Elastic Beanstalk environment dashboard showing "Health: Ok" status in green
 
 ---
 
