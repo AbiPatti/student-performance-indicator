@@ -1,4 +1,5 @@
 # Student Performance Indicator
+### Abinash Patti
 
 A production-ready **end-to-end** machine learning web application that predicts student math scores based on demographic and academic factors. While the ML model itself is straightforward, this project focuses on building a complete engineering pipeline that takes a notebook experiment and turns it into a deployable, maintainable system.
 
