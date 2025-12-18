@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Performance Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,83 +15,115 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(140deg, #3b4a6b 0%, #5d4a7e 50%, #6b5b8a 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 30px 20px;
         }
         
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             padding: 40px;
-            max-width: 600px;
+            max-width: 720px;
             width: 100%;
         }
         
         h1 {
-            color: #333;
+            color: #1a202c;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         .subtitle {
             text-align: center;
-            color: #666;
-            margin-bottom: 30px;
+            color: #4a5568;
+            margin-bottom: 32px;
             font-size: 14px;
+            font-weight: 400;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
         }
         
         label {
-            display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: #2d3748;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         select, input[type="number"] {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e0;
             border-radius: 8px;
             font-size: 14px;
-            transition: border-color 0.3s;
-            background-color: #fafafa;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            background-color: #f7fafc;
+            color: #2d3748;
         }
         
         select:focus, input[type="number"]:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #5d4a7e;
             background-color: white;
+            box-shadow: 0 0 0 3px rgba(93, 74, 126, 0.1);
+        }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%234a5568' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+        
+        input[type="number"]::placeholder {
+            color: #a0aec0;
         }
         
         .btn-predict {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 14px;
+            background: linear-gradient(135deg, #5d4a7e 0%, #7b6a9e 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 10px;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            font-family: 'Inter', sans-serif;
         }
         
         .btn-predict:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 12px 24px rgba(93, 74, 126, 0.3);
+            background: linear-gradient(135deg, #6b5b8a 0%, #8a7aaa 100%);
         }
         
         .btn-predict:active {
@@ -96,93 +131,116 @@
         }
         
         .result {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f0f7ff;
-            border-left: 4px solid #667eea;
-            border-radius: 8px;
+            margin-top: 32px;
+            padding: 24px;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-left: 4px solid #5d4a7e;
+            border-radius: 10px;
             text-align: center;
         }
         
         .result h2 {
-            color: #667eea;
-            font-size: 20px;
-            margin-bottom: 10px;
+            color: #2d3748;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
         
         .score {
-            font-size: 48px;
-            font-weight: bold;
-            color: #333;
+            font-size: 42px;
+            font-weight: 700;
+            color: #1a202c;
+            letter-spacing: -1px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .container {
+                padding: 32px 24px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .score {
+                font-size: 36px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Student Performance Predictor</h1>
-        <p class="subtitle">Predict math scores based on student demographics and test scores</p>
+        <h1>Student Score Predictor</h1>
+        <p class="subtitle">Enter student details to estimate math performance</p>
         
         <form action="/predictdata" method="post">
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="male" {% if gender == 'male' %}selected{% endif %}>Male</option>
-                    <option value="female" {% if gender == 'female' %}selected{% endif %}>Female</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="race_ethnicity">Race/Ethnicity</label>
-                <select id="race_ethnicity" name="race_ethnicity" required>
-                    <option value="">Select Group</option>
-                    <option value="group A" {% if race_ethnicity == 'group A' %}selected{% endif %}>Group A</option>
-                    <option value="group B" {% if race_ethnicity == 'group B' %}selected{% endif %}>Group B</option>
-                    <option value="group C" {% if race_ethnicity == 'group C' %}selected{% endif %}>Group C</option>
-                    <option value="group D" {% if race_ethnicity == 'group D' %}selected{% endif %}>Group D</option>
-                    <option value="group E" {% if race_ethnicity == 'group E' %}selected{% endif %}>Group E</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="parental_level_of_education">Parental Level of Education</label>
-                <select id="parental_level_of_education" name="parental_level_of_education" required>
-                    <option value="">Select Education Level</option>
-                    <option value="some high school" {% if parental_level_of_education == 'some high school' %}selected{% endif %}>Some High School</option>
-                    <option value="high school" {% if parental_level_of_education == 'high school' %}selected{% endif %}>High School</option>
-                    <option value="some college" {% if parental_level_of_education == 'some college' %}selected{% endif %}>Some College</option>
-                    <option value="associate's degree" {% if parental_level_of_education == "associate's degree" %}selected{% endif %}>Associate's Degree</option>
-                    <option value="bachelor's degree" {% if parental_level_of_education == "bachelor's degree" %}selected{% endif %}>Bachelor's Degree</option>
-                    <option value="master's degree" {% if parental_level_of_education == "master's degree" %}selected{% endif %}>Master's Degree</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="lunch">Lunch Type</label>
-                <select id="lunch" name="lunch" required>
-                    <option value="">Select Lunch Type</option>
-                    <option value="standard" {% if lunch == 'standard' %}selected{% endif %}>Standard</option>
-                    <option value="free/reduced" {% if lunch == 'free/reduced' %}selected{% endif %}>Free/Reduced</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="test_preparation_course">Test Preparation Course</label>
-                <select id="test_preparation_course" name="test_preparation_course" required>
-                    <option value="">Select Status</option>
-                    <option value="none" {% if test_preparation_course == 'none' %}selected{% endif %}>None</option>
-                    <option value="completed" {% if test_preparation_course == 'completed' %}selected{% endif %}>Completed</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="reading_score">Reading Score (0-100)</label>
-                <input type="number" id="reading_score" name="reading_score" min="0" max="100" required placeholder="Enter reading score" value="{{ reading_score if reading_score else '' }}">
-            </div>
-            
-            <div class="form-group">
-                <label for="writing_score">Writing Score (0-100)</label>
-                <input type="number" id="writing_score" name="writing_score" min="0" max="100" required placeholder="Enter writing score" value="{{ writing_score if writing_score else '' }}">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male" {% if gender == 'male' %}selected{% endif %}>Male</option>
+                        <option value="female" {% if gender == 'female' %}selected{% endif %}>Female</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="race_ethnicity">Race/Ethnicity</label>
+                    <select id="race_ethnicity" name="race_ethnicity" required>
+                        <option value="">Select Group</option>
+                        <option value="group A" {% if race_ethnicity == 'group A' %}selected{% endif %}>Group A</option>
+                        <option value="group B" {% if race_ethnicity == 'group B' %}selected{% endif %}>Group B</option>
+                        <option value="group C" {% if race_ethnicity == 'group C' %}selected{% endif %}>Group C</option>
+                        <option value="group D" {% if race_ethnicity == 'group D' %}selected{% endif %}>Group D</option>
+                        <option value="group E" {% if race_ethnicity == 'group E' %}selected{% endif %}>Group E</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="parental_level_of_education">Parental Level of Education</label>
+                    <select id="parental_level_of_education" name="parental_level_of_education" required>
+                        <option value="">Select Education Level</option>
+                        <option value="some high school" {% if parental_level_of_education == 'some high school' %}selected{% endif %}>Some High School</option>
+                        <option value="high school" {% if parental_level_of_education == 'high school' %}selected{% endif %}>High School</option>
+                        <option value="some college" {% if parental_level_of_education == 'some college' %}selected{% endif %}>Some College</option>
+                        <option value="associate's degree" {% if parental_level_of_education == "associate's degree" %}selected{% endif %}>Associate's Degree</option>
+                        <option value="bachelor's degree" {% if parental_level_of_education == "bachelor's degree" %}selected{% endif %}>Bachelor's Degree</option>
+                        <option value="master's degree" {% if parental_level_of_education == "master's degree" %}selected{% endif %}>Master's Degree</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lunch">Lunch Type</label>
+                    <select id="lunch" name="lunch" required>
+                        <option value="">Select Lunch Type</option>
+                        <option value="standard" {% if lunch == 'standard' %}selected{% endif %}>Standard</option>
+                        <option value="free/reduced" {% if lunch == 'free/reduced' %}selected{% endif %}>Free/Reduced</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="test_preparation_course">Test Prep Course</label>
+                    <select id="test_preparation_course" name="test_preparation_course" required>
+                        <option value="">Select Status</option>
+                        <option value="none" {% if test_preparation_course == 'none' %}selected{% endif %}>None</option>
+                        <option value="completed" {% if test_preparation_course == 'completed' %}selected{% endif %}>Completed</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reading_score">Reading Score</label>
+                    <input type="number" id="reading_score" name="reading_score" min="0" max="100" required placeholder="0-100" value="{{ reading_score if reading_score else '' }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="writing_score">Writing Score</label>
+                    <input type="number" id="writing_score" name="writing_score" min="0" max="100" required placeholder="0-100" value="{{ writing_score if writing_score else '' }}">
+                </div>
             </div>
             
             <button type="submit" class="btn-predict">Predict Math Score</button>
