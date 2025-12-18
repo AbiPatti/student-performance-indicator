@@ -2,7 +2,7 @@
 
 A production-ready **end-to-end** machine learning web application that predicts student math scores based on demographic and academic factors. While the ML model itself is straightforward, this project focuses on building a complete engineering pipeline that takes a notebook experiment and turns it into a deployable, maintainable system.
 
-> **Live Demo:** [student-performance-indicator-v2-env.eba-bpbyphtg.us-east-2.elasticbeanstalk.com](http://student-performance-indicator-v2-env.eba-bpbyphtg.us-east-2.elasticbeanstalk.com/)
+> **Live Demo (Deployed App):** [student-performance-indicator](http://student-performance-indicator-v2-env.eba-bpbyphtg.us-east-2.elasticbeanstalk.com/)
 
 ## Why I Built This
 
