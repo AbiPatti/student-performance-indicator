@@ -6,3 +6,5 @@ scikit-learn
 xgboost-cpu
 dill
 flask
+pytest
+flake8

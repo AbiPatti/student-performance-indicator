@@ -1,0 +1,36 @@
+name: Quality Assurance Pipeline
+
+# Trigger: Executes this workflow on every push to any branch
+on: [push]
+
+jobs:
+  test-and-lint:
+    # Specifies Ubuntu as the virtual machine environment for running tests
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Clone repository code into the workflow environment
+    - uses: actions/checkout@v3
+
+    # Step 2: Configure Python interpreter version
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.14"
+
+    # Step 3: Install project dependencies and testing frameworks
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Step 4: Execute static code analysis to identify syntax errors and code quality issues
+    - name: Lint with flake8
+      run: |
+        # Fail build if critical syntax errors are detected (undefined names, syntax errors, etc.)
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+    # Step 5: Execute unit tests to verify code functionality and catch regressions
+    - name: Run Unit Tests with pytest
+      run: |
+        pytest
