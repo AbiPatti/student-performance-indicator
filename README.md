@@ -106,7 +106,7 @@ The entire process is automated. If tests fail, deployment stops. If deployment 
 ---
 
 <img width="1891" height="808" alt="image" src="https://github.com/user-attachments/assets/94ae9b0e-b166-46f1-a79f-a9ad6d8dcf86" />
- GitHub Actions workflow run showing all checks passing (green checkmarks for linting and pytest steps)
+ GitHub Actions workflow run showing all checks passing
 
 ---
 
@@ -159,9 +159,11 @@ The web interface is intentionally minimal. Users input student information thro
 
 ---
 
-**Add screenshot here:** The home page showing the modern UI with the prediction form
+<img width="1163" height="862" alt="image" src="https://github.com/user-attachments/assets/858f04e2-7ea4-48c4-a4b6-0fe18958dee4" />
+The home page showing the modern UI with the prediction form
 
-**Add screenshot here:** A completed prediction showing the result
+<img width="1161" height="867" alt="image" src="https://github.com/user-attachments/assets/63df5094-bc58-4fad-87dc-b004c61d0efd" />
+A completed prediction showing the result
 
 ---
 
@@ -213,7 +215,8 @@ The application uses a two-stage CI/CD pipeline:
 
 ---
 
-**Add screenshot here:** AWS CodePipeline showing successful deployment stages (Source → Deploy → Success)
+<img width="1137" height="502" alt="image" src="https://github.com/user-attachments/assets/49403f86-3f85-44d6-ab82-e771dc98b3c5" />
+AWS CodePipeline showing successful deployment stages (Source Success → Deploy Success)
 
 ---
 
